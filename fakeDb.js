@@ -3,6 +3,7 @@ class Items {
   // constructor() {
   //   this.items = [];
   // }
+  static itemsList = [{ "name": "popsicle", "price": 1.45 }];
 
   static all() {
     return Items.itemsList;
@@ -24,20 +25,17 @@ class Items {
     return Items.itemsList.splice(idx, 1);
   }
 
-  static update(modifyItem) {
+  static update(originalItemName, modifyItem) {
     // const idx = Items.itemsList.findIndex(item => item.name === modifyItem.name);
     // Items.itemList[idx].name = modifyItem.name;
     // Items.itemList[idx].price = modifyItem.price;
     // return Items.itemList[idx];
 
-    const item = Items.itemsList.find(item => item.name === itemName);
+    const item = Items.itemsList.find(item => item.name === originalItemName);
     item.name = modifyItem.name;
     item.price = modifyItem.price.toFixed(2);
     return item;
   }
-
-  static itemsList = [{ "name": "popsicle", "price": 1.45 }];
-
 }
 
 
