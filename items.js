@@ -17,10 +17,8 @@ router.get("/", function (req, res) {
 });
 
 router.post("/", validData, duplicateCheck, function (req, res) {
+  console.log("I AM IN THE POST NEW ITEM REQUEST");
   const item = req.body;
-  console.log('POST ADD ITEM ROUTE');
-  console.log('Item-------------------------------------------0000', item);
-  console.log(typeof item.price);
   const addedItem = db.Items.add(item);
   return res.json({ 'added': addedItem });
 });
@@ -34,23 +32,24 @@ router.patch('/:name', validData, function (req, res) {
   const name = req.params.name;
   const item = req.body;
   const updatedItem = db.Items.update(name, item);
-  return res.json({updated: updatedItem});
+  return res.json({ updated: updatedItem });
 });
 
 router.delete('/:name', function (req, res) {
   const name = req.params.name;
   db.Items.delete(name);
 
-  return res.json({message: "Deleted"});
+  return res.json({ message: "Deleted" });
 });
 
 function duplicateCheck(req, res, next) {
   const name = req.body.name;
-  if(db.Items.get(name)) throw new BadRequestError(`${name} already exists!`)
+  if (db.Items.get(name)) throw new BadRequestError(`${name} already exists!`);
   return next();
 }
 
 function validData(req, res, next) {
+  console.log("I AM VALIDATING DATA");
   const keys = Object.keys(req.body);
   if (!(keys.length === 2 && keys.includes('name') && keys.includes('price'))) {
     throw new BadRequestError('Invalid JSON Format!');

@@ -10,7 +10,6 @@ class Items {
   }
 
   static add(newItem) {
-    console.log('New Item Price', typeof newItem.price);
     newItem.price = newItem.price.toFixed(2);
     Items.itemsList.push(newItem);
     return newItem;
@@ -27,11 +26,6 @@ class Items {
   }
 
   static update(originalItemName, modifyItem) {
-    // const idx = Items.itemsList.findIndex(item => item.name === modifyItem.name);
-    // Items.itemList[idx].name = modifyItem.name;
-    // Items.itemList[idx].price = modifyItem.price;
-    // return Items.itemList[idx];
-
     const item = Items.itemsList.find(item => item.name === originalItemName);
     item.name = modifyItem.name;
     item.price = modifyItem.price.toFixed(2);
