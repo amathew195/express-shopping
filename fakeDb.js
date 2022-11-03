@@ -3,13 +3,14 @@ class Items {
   // constructor() {
   //   this.items = [];
   // }
-  static itemsList = [{ "name": "popsicle", "price": 1.45 }];
+  static itemsList = [];
 
   static all() {
     return Items.itemsList;
   }
 
   static add(newItem) {
+    console.log('New Item Price', typeof newItem.price);
     newItem.price = newItem.price.toFixed(2);
     Items.itemsList.push(newItem);
     return newItem;
@@ -35,6 +36,10 @@ class Items {
     item.name = modifyItem.name;
     item.price = modifyItem.price.toFixed(2);
     return item;
+  }
+
+  static deleteAll() {
+    Items.itemsList = [];
   }
 }
 

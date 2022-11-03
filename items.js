@@ -18,6 +18,9 @@ router.get("/", function (req, res) {
 
 router.post("/", validData, duplicateCheck, function (req, res) {
   const item = req.body;
+  console.log('POST ADD ITEM ROUTE');
+  console.log('Item-------------------------------------------0000', item);
+  console.log(typeof item.price);
   const addedItem = db.Items.add(item);
   return res.json({ 'added': addedItem });
 });
